@@ -22,6 +22,16 @@ public class Person {
 		this.email = email;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(o==this)
+			return true;
+		if(!(o instanceof Person))
+			return false;
+		Person op=(Person)o;
+		return fName.equals(op.fName) && lName.equals(op.lName);
+	}
+	
 	public String getCity() {
 		return city;
 	}

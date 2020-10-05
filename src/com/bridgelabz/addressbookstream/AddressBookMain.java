@@ -53,6 +53,7 @@ public class AddressBookMain {
 			System.out.println(m.getKey());
 			System.out.println(m.getValue());
 		}
+		System.out.println("Number of person conatcts in "+statename+" is: "+stateList.stream().count());
 	}
 	
 	public void viewPersonByCity(String cityname) {
@@ -63,6 +64,7 @@ public class AddressBookMain {
 			System.out.println(m.getKey());
 			System.out.println(m.getValue());
 		}
+		System.out.println("Number of person conatcts in "+cityname+" is: "+cityList.stream().count());
 	}
 
 	public static void main(String[] args) {

@@ -4,8 +4,8 @@ public class Person {
 	public String fName;
 	public String lName;
 	private String address;
-	private String city;
-	private String state;
+	public String city;
+	public String state;
 	private String zip;
 	private long phoneNo;
 	private String email;

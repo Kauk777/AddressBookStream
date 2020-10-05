@@ -35,6 +35,16 @@ public class AddressBookMain {
 	    }
 	}
 	
+	public void viewSortedCityDetails() {
+		Map<String,Person> sortedCityMap=contactMap.entrySet().stream()
+				.sorted(Map.Entry.comparingByValue(Comparator.comparing(Person::getCity)))
+				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+		for(Map.Entry<String,Person> sm:sortedCityMap.entrySet()) {
+	    	System.out.println(sm.getValue().city);
+	    	System.out.println(sm.getValue());
+	    }				
+	}
+	
 	public void editDetails(String fname, String lname) {
 		for(Map.Entry<String,Person> m:contactMap.entrySet()) {
 			if(m.getValue().fName.equals(fname) && m.getValue().lName.equals(lname)) {
@@ -56,8 +66,7 @@ public class AddressBookMain {
 	}
 	
 	public void viewPersonByState(String statename) {
-		Collection<Person> values=contactMap.values();
-		List<Person> stateList=values.stream().filter(p->statename.equals(p.state)).collect(Collectors.toList());	
+		List<Person> stateList=contactMap.values().stream().filter(p->statename.equals(p.state)).collect(Collectors.toList());	
 		Map<String,List<Person>> personByState=stateList.stream().collect(Collectors.groupingBy(Person::getState));
 		for(Map.Entry<String,List<Person>> m:personByState.entrySet()) {
 			System.out.println(m.getKey());
@@ -67,8 +76,7 @@ public class AddressBookMain {
 	}
 	
 	public void viewPersonByCity(String cityname) {
-		Collection<Person> values=contactMap.values();
-		List<Person> cityList=values.stream().filter(p->cityname.equals(p.city)).collect(Collectors.toList());	
+		List<Person> cityList=contactMap.values().stream().filter(p->cityname.equals(p.city)).collect(Collectors.toList());	
 		Map<String,List<Person>> personByCity=cityList.stream().collect(Collectors.groupingBy(Person::getCity));
 		for(Map.Entry<String,List<Person>> m:personByCity.entrySet()) {
 			System.out.println(m.getKey());
@@ -96,7 +104,8 @@ public class AddressBookMain {
 		System.out.println("3. View person names by state");
 		System.out.println("4. View person names by city");
 		System.out.println("5. View sorted address details by person name");
-		System.out.println("6. Exit");
+		System.out.println("6. View sorted address details by city");
+		System.out.println("7. Exit");
 		while(flag) {
 			System.out.println("Enter your choice");
 			int ch=sc.nextInt();
@@ -130,6 +139,10 @@ public class AddressBookMain {
 				addBook.viewSortedDetails();
 				break;
 			case 6:
+				System.out.println("sorted details by city");
+				addBook.viewSortedCityDetails();
+				break;
+			case 7:
 				flag=false;
 				break;
 			default:

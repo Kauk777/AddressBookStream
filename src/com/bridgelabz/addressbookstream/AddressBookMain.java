@@ -25,6 +25,16 @@ public class AddressBookMain {
 		}
 	}
 	
+	public void viewSortedDetails() {
+		Map<String,Person> sortedMap=contactMap.entrySet().stream()
+				.sorted(Map.Entry.comparingByKey())
+				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+	    for(Map.Entry<String,Person> sm:sortedMap.entrySet()) {
+	    	System.out.println(sm.getKey());
+	    	System.out.println(sm.getValue());
+	    }
+	}
+	
 	public void editDetails(String fname, String lname) {
 		for(Map.Entry<String,Person> m:contactMap.entrySet()) {
 			if(m.getValue().fName.equals(fname) && m.getValue().lName.equals(lname)) {
@@ -85,7 +95,8 @@ public class AddressBookMain {
 		System.out.println("2. Delete address detail based on person name");
 		System.out.println("3. View person names by state");
 		System.out.println("4. View person names by city");
-		System.out.println("5. Exit");
+		System.out.println("5. View sorted address details by person name");
+		System.out.println("6. Exit");
 		while(flag) {
 			System.out.println("Enter your choice");
 			int ch=sc.nextInt();
@@ -115,6 +126,10 @@ public class AddressBookMain {
 				addBook.viewPersonByCity(cpname);
 				break;
 			case 5:
+				System.out.println("Alphabetically sorted details");
+				addBook.viewSortedDetails();
+				break;
+			case 6:
 				flag=false;
 				break;
 			default:

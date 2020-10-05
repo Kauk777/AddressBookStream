@@ -5,8 +5,7 @@ import java.util.stream.Collectors;
 
 
 public class AddressBookMain {
-	
-private Map<String,Person> contactMap;
+    private Map<String,Person> contactMap;
 	
 	public AddressBookMain() {
 		contactMap = new HashMap<>();
@@ -46,12 +45,24 @@ private Map<String,Person> contactMap;
 		}
 	}
 	
-	public void viewByState(String stateName) {
+	public void viewPersonByState(String statename) {
 		Collection<Person> values=contactMap.values();
-		List<Person> stateList=values.stream().filter(p->stateName.equals(p.state)).collect(Collectors.toList());
-		stateList.stream().forEach(p->{ 
-			System.out.println(p.fName+" "+p.lName);
-			System.out.println(p);});	
+		List<Person> stateList=values.stream().filter(p->statename.equals(p.state)).collect(Collectors.toList());	
+		Map<String,List<Person>> personByState=stateList.stream().collect(Collectors.groupingBy(Person::getState));
+		for(Map.Entry<String,List<Person>> m:personByState.entrySet()) {
+			System.out.println(m.getKey());
+			System.out.println(m.getValue());
+		}
+	}
+	
+	public void viewPersonByCity(String cityname) {
+		Collection<Person> values=contactMap.values();
+		List<Person> cityList=values.stream().filter(p->cityname.equals(p.city)).collect(Collectors.toList());	
+		Map<String,List<Person>> personByCity=cityList.stream().collect(Collectors.groupingBy(Person::getCity));
+		for(Map.Entry<String,List<Person>> m:personByCity.entrySet()) {
+			System.out.println(m.getKey());
+			System.out.println(m.getValue());
+		}
 	}
 
 	public static void main(String[] args) {
@@ -64,12 +75,15 @@ private Map<String,Person> contactMap;
 		addBook.addDetails("Momba", "High", "Venus street", "Panji", "Goa", "831005", 84512355, "high@hotmail.com");
 		addBook.addDetails("Sidharth", "Kahali", "Neptune street", "Panji", "Goa", "831005", 88514355, "kahali@hotmail.com");
 		addBook.addDetails("Veda", "Veenet", "Mars street", "Panji", "Goa", "831045", 68514355, "veenet@hotmail.com");
+		addBook.addDetails("Mave", "Carla", "Durga Street24", "Durgapur", "West Bengal", "254186", 96848933, "carla@gmail.com");
+		addBook.addDetails("Shyansh", "Kumar", "Kali Marg 257", "Kolkata", "West Bengal", "254156", 84848933, "shyansh1998@gmail.com");
 		addBook.viewDetails();
 		boolean flag=true;
 		System.out.println("1. Edit address detail based on person name");
 		System.out.println("2. Delete address detail based on person name");
-		System.out.println("3. Address details of persons based on state");
-		System.out.println("4. Exit");
+		System.out.println("3. View person names by state");
+		System.out.println("4. View person names by city");
+		System.out.println("5. Exit");
 		while(flag) {
 			System.out.println("Enter your choice");
 			int ch=sc.nextInt();
@@ -89,10 +103,16 @@ private Map<String,Person> contactMap;
 			case 3:
 				System.out.println("Enter the state name");
 				sc.nextLine();
-				String sname=sc.nextLine();
-				addBook.viewByState(sname);
+				String spname=sc.nextLine();
+				addBook.viewPersonByState(spname);
 				break;
 			case 4:
+				System.out.println("Enter the city name");
+				sc.nextLine();
+				String cpname=sc.nextLine();
+				addBook.viewPersonByCity(cpname);
+				break;
+			case 5:
 				flag=false;
 				break;
 			default:
@@ -102,5 +122,4 @@ private Map<String,Person> contactMap;
 		System.out.println("New address details");
 		addBook.viewDetails();
 	}
-
 }

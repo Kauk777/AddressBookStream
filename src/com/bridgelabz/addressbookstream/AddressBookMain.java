@@ -15,7 +15,7 @@ public class AddressBookMain {
 		contactMap = new HashMap<>();
 	}
 
-	public void addDetails(String fname, String lname, String address, String city, String state, String zip, long phno,
+	public void addDetails(String fname, String lname, String address, String city, String state, String zip, String phno,
 			String email) {
 		Person p = new Person(fname, lname, address, city, state, zip, phno, email);
 		String name = fname + " " + lname;
@@ -53,7 +53,7 @@ public class AddressBookMain {
 	public void editDetails(String fname, String lname) {
 		for (Map.Entry<String, Person> m : contactMap.entrySet()) {
 			if (m.getValue().fName.equals(fname) && m.getValue().lName.equals(lname)) {
-				Person editedDetails = new Person(fname, lname, "Dew Point", "Melbourne", "Queens", "P2548", 785412, "joshua@hotmail.com");
+				Person editedDetails = new Person(fname, lname, "Dew Point", "Melbourne", "Queens", "P2548", "785412", "joshua@hotmail.com");
 				contactMap.replace(m.getKey(), editedDetails);
 				System.out.println("Edited Details of " + fname + " " + lname + ": " + editedDetails);
 			}
@@ -104,23 +104,27 @@ public class AddressBookMain {
 		addressBookFile.countEntries(IOService.FILE_IO);
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		AddressBookMain addBook = new AddressBookMain();
-		addBook.addDetails("Joshua", "Patrick", "Mave Hill 025", "Las Vegas", "California", "C25042", 25478963, "joshua@green.com");
-		addBook.addDetails("Staya", "Veda", "Kali Marg 254", "Kolkata", "West Bengal", "254156", 75848933, "veda@gmail.com");
-		addBook.addDetails("Zao", "Vikigh", "Yellow River R10", "Xinju", "Bejing", "745156", 98848933, "zao@gmail.com");
-		addBook.addDetails("Zao", "Vikigh", "Yellow Plain R10", "Xinju", "Bejing", "745156", 98848933, "zao@gmail.com");
-		addBook.addDetails("Momba", "High", "Venus street", "Panji", "Goa", "831005", 84512355, "high@hotmail.com");
-		addBook.addDetails("Sidharth", "Kahali", "Neptune street", "Panji", "Goa", "831005", 88514355, "kahali@hotmail.com");
-		addBook.addDetails("Veda", "Veenet", "Mars street", "Panji", "Goa", "831045", 68514355, "veenet@hotmail.com");
-		addBook.addDetails("Mave", "Carla", "Durga Street24", "Durgapur", "West Bengal", "254186", 96848933,"carla@gmail.com");
-		addBook.addDetails("Shyansh", "Kumar", "Kali Marg 257", "Kolkata", "West Bengal", "254156", 84848933,"shyansh1998@gmail.com");
-		addBook.addDetails("Felix", "George", "Hollywood street101", "Las Vegas", "California", "C54106", 9948933,"felix42@gmail.com");
+		addBook.addDetails("Joshua", "Patrick", "Mave Hill 025", "Las Vegas", "California", "C25042", "25478963", "joshua@green.com");
+		addBook.addDetails("Staya", "Veda", "Kali Marg 254", "Kolkata", "West Bengal", "254156", "75848933", "veda@gmail.com");
+		addBook.addDetails("Zao", "Vikigh", "Yellow River R10", "Xinju", "Bejing", "745156", "98848933", "zao@gmail.com");
+		addBook.addDetails("Zao", "Vikigh", "Yellow Plain R10", "Xinju", "Bejing", "745156", "98848933", "zao@gmail.com");
+		addBook.addDetails("Momba", "High", "Venus street", "Panji", "Goa", "831005", "84512355", "high@hotmail.com");
+		addBook.addDetails("Sidharth", "Kahali", "Neptune street", "Panji", "Goa", "831005", "88514355", "kahali@hotmail.com");
+		addBook.addDetails("Veda", "Veenet", "Mars street", "Panji", "Goa", "831045", "68514355", "veenet@hotmail.com");
+		addBook.addDetails("Mave", "Carla", "Durga Street24", "Durgapur", "West Bengal", "254186", "96848933","carla@gmail.com");
+		addBook.addDetails("Shyansh", "Kumar", "Kali Marg 257", "Kolkata", "West Bengal", "254156", "84848933","shyansh1998@gmail.com");
+		addBook.addDetails("Felix", "George", "Hollywood street101", "Las Vegas", "California", "C54106", "9948933","felix42@gmail.com");
 		addBook.viewDetails();
 		System.out.println("--------Writing and reading address details in File--------");
 		addBook.fileIOAddressBook(); // Writing address details in File
 		addBook.countAddressEntries(); // Counting Number of entries in file
+		
+		System.out.println("--------Writing and reading address details in CSV File--------");
+		new PersonContactCsvFile().csvWriter();
+		new PersonContactCsvFile().csvReader();
 
 		boolean flag = true;
 		System.out.println("1. Edit address detail based on person name");

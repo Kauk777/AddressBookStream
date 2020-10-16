@@ -7,10 +7,10 @@ public class Person {
 	public String city;
 	public String state;
 	private String zip;
-	private long phoneNo;
+	private String phoneNo;
 	private String email;
 	
-	public Person(String fName, String lName, String address, String city, String state, String zip, long phoneNo,
+	public Person(String fName, String lName, String address, String city, String state, String zip, String phoneNo,
 			String email) {
 		this.fName = fName;
 		this.lName = lName;
@@ -22,6 +22,54 @@ public class Person {
 		this.email = email;
 	}
 	
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getCity() {
 		return city;
 	}

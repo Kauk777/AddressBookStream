@@ -125,6 +125,10 @@ public class AddressBookMain {
 		System.out.println("--------Writing and reading address details in CSV File--------");
 		new PersonContactCsvFile().csvWriter();
 		new PersonContactCsvFile().csvReader();
+		
+		System.out.println("--------Writing and reading address details in JSON File--------");
+		new PersonContactJsonFile().writeJsonFile();
+		new PersonContactJsonFile().readJsonFile();
 
 		boolean flag = true;
 		System.out.println("1. Edit address detail based on person name");

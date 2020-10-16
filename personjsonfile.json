@@ -1,0 +1,32 @@
+[
+  {
+    "fName": "Joshua",
+    "lName": "Patrick",
+    "address": "Mave Hill 025",
+    "city": "Las Vegas",
+    "state": "California",
+    "zip": "C25042",
+    "phoneNo": "25478963",
+    "email": "joshua@green.com"
+  },
+  {
+    "fName": "Mave",
+    "lName": "Carla",
+    "address": "Durga Street24",
+    "city": "Durgapur",
+    "state": "West Bengal",
+    "zip": "254186",
+    "phoneNo": "96848933",
+    "email": "carla@gmail.com"
+  },
+  {
+    "fName": "Sidharth",
+    "lName": "Kahali",
+    "address": "Neptune street",
+    "city": "Panji",
+    "state": "Goa",
+    "zip": "831005",
+    "phoneNo": "88514355",
+    "email": "kahali@hotmail.com"
+  }
+]
